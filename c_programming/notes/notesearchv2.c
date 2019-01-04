@@ -49,6 +49,10 @@ int print_notes(int fd, int uid, char *searchstring)
     
     if (read(fd, note_buffer, note_length) != note_length)
         printf("[DEBUG] Error while reading to note buffer\n"); //fatal("in print_notes, nothing read from buffer");
+    
+    // read(fd, &byte, 1);
+    // printf("HEllo\n");
+    // printf("[DEBUG] byte read in print_notes: --> %c <--\n", byte);
 
     note_buffer[note_length] = 0;
     
@@ -96,7 +100,7 @@ int find_user_note(int fd, int user_uid)
     }
 
     char sec_byte = 'A';
-    lseek(fd, 4, SEEK_CUR); //NOT WORKING (OR IS IT?)
+    lseek(fd, -3, SEEK_CUR); //NOT WORKING (OR IS IT?)
     read(fd, &sec_byte, 1);
     printf("[DEBUG] Rewinded byte: %c\n", sec_byte);
 
